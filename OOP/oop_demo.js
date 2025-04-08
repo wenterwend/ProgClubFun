@@ -1,3 +1,11 @@
+// Enum-like object for food types
+const FoodType = Object.freeze({
+    FAST_FOOD: "Fast Food",
+    VEGETABLE: "Vegetable",
+    FRUIT: "Fruit",
+    NUT: "Nut"
+});
+
 // Base class: Person
 class Person {
     #name; // Encapsulation: private field
@@ -42,6 +50,50 @@ class Student extends Person {
     }
 }
 
+// Subclass: Create your own Person here!
+
+// Base class: Food
+class Food {
+    #type; // Encapsulation: private field
+    constructor(type) {
+        this.#type = type;
+    }
+
+    getType() {
+        return this.#type; // Encapsulation: controlled access
+    }
+
+    // Abstraction: Abstract method
+    prepare() {
+        throw new Error("Method 'prepare()' must be implemented.");
+    }
+}
+
+
+// Example subclass: FastFood
+class FastFood extends Food {
+    constructor() {
+        super(FoodType.FAST_FOOD);
+    }
+
+    prepare() {
+        return "Preparing fast food!";
+    }
+}
+
+// Example subclass: Vegetable
+class Vegetable extends Food {
+    constructor() {
+        super(FoodType.VEGETABLE);
+    }
+
+    prepare() {
+        return "Washing and chopping vegetables!";
+    }
+}
+
+// Example subclass: Create your own Food here!
+
 // Base class: Animal
 class Animal {
     #species; // Encapsulation: private field
@@ -85,6 +137,8 @@ class Dog extends Animal {
     }
 }
 
+// Subclass: Create your own Animal here!
+
 // Utility function to display output on the page
 function displayOutput(message) {
     const outputDiv = document.getElementById('output');
@@ -98,8 +152,15 @@ const teacher = new Teacher("Alice", 30, "Math");
 const student = new Student("Bob", 16, "10th");
 const cat = new Cat("Whiskers");
 const dog = new Dog("Buddy");
+const burger = new FastFood();
+const carrot = new Vegetable();
+
 
 displayOutput(teacher.describeRole()); // Alice is a teacher who teaches Math.
 displayOutput(student.describeRole()); // Bob is a student in grade 10th.
 displayOutput(cat.makeSound());        // Whiskers says Meow!
 displayOutput(dog.makeSound());        // Buddy says Woof!
+displayOutput(burger.getType()); // Fast Food
+displayOutput(burger.prepare()); // Preparing fast food!
+displayOutput(carrot.getType()); // Vegetable
+displayOutput(carrot.prepare()); // Washing and chopping vegetables!
