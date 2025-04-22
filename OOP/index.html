@@ -4,10 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OOP Demo</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .column {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .left-column {
+            border-right: 1px solid #ccc;
+        }
+        .right-column pre {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-y: auto; /* Add vertical scroll bar */
+            max-height: 400px; /* Set a maximum height for the scrollable area */
+        }
+        textarea {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            display: block;
+            margin-bottom: 20px;
+        }
+        #output {
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            min-height: 100px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Object-Oriented Programming Demo</h1>
-    <div id="output"></div>
+    <!-- Left Column -->
+    <div class="column left-column">
+        <h1>Run Your Code</h1>
+        <textarea id="userCode" rows="10" placeholder="Write your JavaScript code here..."></textarea>
+        <button onclick="runUserCode()">Run Code</button>
+        <div id="output"></div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="column right-column">
+        <h2>Base Classes and Sample Usage</h2>
+        <pre>
+Base Class: Person
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    describeRole() {
+        throw new Error("Method 'describeRole()' must be implemented.");
+    }
+}
+
+Extended Class: Teacher
+class Teacher extends Person {
+    constructor(name, age, subject) {
+        super(name, age);
+        this.subject = subject;
+    }
+    describeRole() {
+        return `${this.name} is a teacher who teaches ${this.subject}.`;
+    }
+}
+
+Sample Usage:
+const teacher = new Teacher("Alice", 30, "Math");
+console.log(teacher.describeRole()); // Alice is a teacher who teaches Math.
+
+Base Class: Food
+class Food {
+    constructor(type) {
+        this.type = type;
+    }
+    prepare() {
+        throw new Error("Method 'prepare()' must be implemented.");
+    }
+}
+
+Extended Class: FastFood
+class FastFood extends Food {
+    constructor() {
+        super("Fast Food");
+    }
+    prepare() {
+        return "Preparing fast food!";
+    }
+}
+
+Sample Usage:
+const burger = new FastFood();
+console.log(burger.prepare()); // Preparing fast food!
+
+Base Class: Animal
+class Animal {
+    constructor(species) {
+        this.species = species;
+    }
+    makeSound() {
+        throw new Error("Method 'makeSound()' must be implemented.");
+    }
+}
+
+Extended Class: Dog
+class Dog extends Animal {
+    constructor(name) {
+        super("Dog");
+        this.name = name;
+    }
+    makeSound() {
+        return `${this.name} says Woof!`;
+    }
+}
+
+Sample Usage:
+const dog = new Dog("Buddy");
+console.log(dog.makeSound()); // Buddy says Woof!
+        </pre>
+    </div>
+    
     <script src="oop_demo.js"></script>
 </body>
 </html>

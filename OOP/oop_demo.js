@@ -6,6 +6,7 @@ const FoodType = Object.freeze({
     NUT: "Nut"
 });
 
+//REGION Classes
 // Base class: Person
 class Person {
     #name; // Encapsulation: private field
@@ -21,6 +22,21 @@ class Person {
     // Abstraction: Abstract method
     describeRole() {
         throw new Error("Method 'describeRole()' must be implemented.");
+    }
+}
+
+//Subclass: Pope
+class Pope extends Person {
+    constructor(name, age, papalName) {
+        super(name, age);
+        this.papalName = papalName;
+    }
+    getName() {
+        return `${super.getName()} is the Pope with the papal name ${this.papalName}.`;
+    }
+    // Polymorphism: Overriding describeRole
+    describeRole() {
+        return `The pope serves as the spiritual father and servant leader of the universal Church`;
     }
 }
 
@@ -139,13 +155,31 @@ class Dog extends Animal {
 
 // Subclass: Create your own Animal here!
 
+
 // Utility function to display output on the page
-function displayOutput(message) {
+function showOutput(message) {
     const outputDiv = document.getElementById('output');
     const paragraph = document.createElement('p');
     paragraph.textContent = message;
     outputDiv.appendChild(paragraph);
 }
+
+function runUserCode() {
+    const userCode = document.getElementById('userCode').value;
+    const outputDiv = document.getElementById('output');
+    outputDiv.innerHTML = ""; // Clear previous output
+    try {
+        // Evaluate the user's code
+        eval(userCode);
+    } catch (error) {
+        // Display any errors in the output div
+        const errorParagraph = document.createElement('p');
+        errorParagraph.textContent = `Error: ${error.message}`;
+        outputDiv.appendChild(errorParagraph);
+    }
+}
+
+//REGION execution
 
 // Demonstration
 const teacher = new Teacher("Alice", 30, "Math");
@@ -155,12 +189,33 @@ const dog = new Dog("Buddy");
 const burger = new FastFood();
 const carrot = new Vegetable();
 
+const pope = new Pope("Jorge Mario Bergoglio",88,"Francis");
+showOutput(pope.getName()); // Jorge Mario Bergoglio is the Pope with the papal name Francis.
+showOutput(pope.describeRole());
 
-displayOutput(teacher.describeRole()); // Alice is a teacher who teaches Math.
-displayOutput(student.describeRole()); // Bob is a student in grade 10th.
-displayOutput(cat.makeSound());        // Whiskers says Meow!
-displayOutput(dog.makeSound());        // Buddy says Woof!
-displayOutput(burger.getType()); // Fast Food
-displayOutput(burger.prepare()); // Preparing fast food!
-displayOutput(carrot.getType()); // Vegetable
-displayOutput(carrot.prepare()); // Washing and chopping vegetables!
+showOutput(teacher.describeRole()); // Alice is a teacher who teaches Math.
+showOutput(student.describeRole()); // Bob is a student in grade 10th.
+showOutput(cat.makeSound());        // Whiskers says Meow!
+showOutput(dog.makeSound());        // Buddy says Woof!
+showOutput(burger.getType());       // Fast Food
+showOutput(burger.prepare());       // Preparing fast food!
+showOutput(carrot.getType());       // Vegetable
+showOutput(carrot.prepare());       // Washing and chopping vegetables!
+
+
+/*
+
+const dog2 = new Dog("Jake");
+displayOutput(dog2.makeSound())
+
+class MilkShake extends Food {
+constructor() {
+super("MilkShake");
+}
+prepare() {
+return "Blend Ice Cream and ingredients";
+}
+}
+const milkshake = new MilkShake();
+displayOutput(milkshake.prepare());
+*/
