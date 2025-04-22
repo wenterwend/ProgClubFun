@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OOP Demo</title>
+    <!-- Include Prism.js CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
     <style>
         body {
             display: flex;
@@ -13,7 +15,7 @@
             padding: 0;
         }
         .column {
-            flex: 1;
+            flex: 1; /* Make columns equal in size */
             padding: 20px;
             box-sizing: border-box;
         }
@@ -57,7 +59,7 @@
     <!-- Right Column -->
     <div class="column right-column">
         <h2>Base Classes and Sample Usage</h2>
-        <pre>
+        <pre><code class="language-javascript">
 Base Class: Person
 class Person {
     constructor(name, age) {
@@ -132,9 +134,12 @@ class Dog extends Animal {
 Sample Usage:
 const dog = new Dog("Buddy");
 console.log(dog.makeSound()); // Buddy says Woof!
-        </pre>
+        </code></pre>
     </div>
     
+    <!-- Include Prism.js JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
     <script src="oop_demo.js"></script>
 </body>
 </html>
